@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+    <title>Document</title>
+  </head>
+  <body class="MainBox">
+    <div class="MainBox">
+      <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <div class="Header"><a href="/">컴컴</a></div>
+        <div class="aaa">회원가입</div>
+        <div class="ID">아이디</div>
+        <input class="IDtext" id="id" type="text" name="id" />
+        <div class="PW">비밀번호</div>
+        <input class="PWtext" id="pw" type="text" name="pw" />
+        <div class="PWCheck">비밀번호 확인</div>
+        <input class="PWChecktext" id="pwchcektext" type="text" name= "pw-confirm" />
+        <div class="Name">이름</div>
+        <input class="Nametext" id="name" type="text" name="name" />
+        <div class="Mail">이메일</div>
+        <input class="Mailtext" id="Mail" type="text" name="email" />
+        <button id="btn" type="submit" name="register-submit" value="register" >회원가입</button>
+        <div class="a"></div>
+      </form>
+    </div>
+  </body>
+</html>

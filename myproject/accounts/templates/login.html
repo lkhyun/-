@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head> <!--css 사용-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <title>Document</title>
+  </head>
+  <body class="MainBox">
+    <div class="MainBox">
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %} <!--보안관련-->
+        <div class="Header"><a href="/">컴컴</a></div>
+        <div class="ID">아이디</div>
+        <input class="IDtext" id="id" type="text" name="userid" />
+        <div class="PW">비밀번호</div>
+        <input class="PWtext" id="pw" type="text" name="password" />
+        <button id="btn">로그인</button>
+      </form>
+    </div>
+  </body>
+</html>

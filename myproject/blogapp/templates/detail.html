@@ -1,0 +1,37 @@
+<a href="/">홈</a><br>
+<!-- views.py에서 보내준 post_detail객체에서 정보를 하나씩 보여주기 -->
+<h1>제목</h1>
+{{ post_detail.title }}
+
+<h2>날짜</h2>
+{{ post_detail.date }}
+
+<h3>작성자</h3>
+{{ post_detail.author.username }}
+
+<!-- 사진은 선택사항이었으므로 있다면 보여주기 위해 if문 사용 -->
+<h4>본문</h4>
+{% if post_detail.photo %}
+    <img src = "{{ post_detail.photo.url }}" alt="" height="500">
+
+{% endif %}
+<br><br>
+{{ post_detail.body }}
+
+<hr>
+<!-- 댓글은 게시물 하나에 여러개가 존재하므로 for문 사용 -->
+<h3>댓글</h3>
+{% for comment in post_detail.comment_set.all %}
+<p>{{ comment }}</p>
+<p>{{ comment.date }}</p>
+<hr>
+{% endfor %}
+
+<!-- 로그인이 된 상태여야만 댓글을 쓸 수 있게끔 구현 -->
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'create_comment' post_detail.id %}">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit" value="댓글 입력">
+</form>
+{% endif %}
